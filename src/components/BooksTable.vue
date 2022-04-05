@@ -8,17 +8,17 @@
                 <th>Liczba stron</th>
             </thead>
             <tbody>
-            <tr v-for="book in booksSource" :key = "book.id">
-                <td>{{ book.id }}</td>
-                <td>{{ book.title }}</td>
-                <td>
-                    <span v-if="book.author != null">
-                        <router-link to="/authors">{{ book.author.name }} {{ book.author.surname}}</router-link>
-                    </span>
-                </td>
-                <td>{{ book.pages}}</td>
-            </tr>
-        </tbody>
+                <tr v-for="book in booksSource" :key = "book.id">
+                    <td>{{ book.id }}</td>
+                    <td>{{ book.title }}</td>
+                    <td>
+                        <span v-if="book.author != null">
+                            <router-link :to="'/author/' + book.author.id" >{{ book.author.name }} {{ book.author.surname}}</router-link>
+                        </span>
+                    </td>
+                    <td>{{ book.pages}}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </template>

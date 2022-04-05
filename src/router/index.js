@@ -26,6 +26,11 @@ const routes = [
     meta: {
       layout: 'AppLayoutAuthors'
     }
+  },
+  {
+    path: '/author/:id',
+    name: 'author-details',
+    component: () => import('../views/AuthorView')
   }
   // {
   //   path: '/bookadd',

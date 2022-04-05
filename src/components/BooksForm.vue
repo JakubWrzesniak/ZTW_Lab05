@@ -20,12 +20,12 @@
         @keypress="clearStatus" 
         />
         <p v-if="error && submitting" class="error-message">
-        Proszę wypełnić wskazane pola formularza
+            Proszę wypełnić wskazane pola formularza
         </p>
         <p v-if="success" class="success-message">
-        Dane poprawnie zapisano
+            Dane poprawnie zapisano
         </p>
-        <button>Dodaj książkę</button>
+            <button>Dodaj książkę</button>
         </b-form>
     </div>
 </template>
