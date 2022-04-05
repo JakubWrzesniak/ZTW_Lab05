@@ -2,7 +2,10 @@
     <div id="books-form">
         <b-form @submit.prevent="handleSubmit">
         <label>Tytuł</label>
-        <b-form-input v-model="book.title" type="text" />
+        <b-form-input v-model="book.title" type="text" :class="{ 'has-error': submitting && invalidName }" 
+        @focus="clearStatus"
+        @keypress="clearStatus" 
+        />
         <label>Autor</label>
         <b-form-select v-model="book.authorId">
             <option :value="null" disabled>-- Please select an option --</option>
@@ -11,7 +14,17 @@
             </option>
         </b-form-select>
         <label>Liczba stron</label>
-        <b-form-input v-model="book.pages" type="number" />
+        <b-form-input v-model="book.pages" type="number"
+        :class="{ 'has-error-page': submitting && invalidPageNumber }" 
+        @focus="clearStatus"
+        @keypress="clearStatus" 
+        />
+        <p v-if="error && submitting" class="error-message">
+        Proszę wypełnić wskazane pola formularza
+        </p>
+        <p v-if="success" class="success-message">
+        Dane poprawnie zapisano
+        </p>
         <button>Dodaj książkę</button>
         </b-form>
     </div>
@@ -79,6 +92,22 @@
                 return this.book.pages < 0
             }
          }
-
     }
 </script>
+
+<style scoped>
+ form {
+ margin-bottom: 2rem;
+ }
+
+ [class*='-message'] {
+ font-weight: 500;
+ }
+ .error-message {
+ color: #d33c40;
+ }
+ .success-message {
+ color: #32a95d;
+ }
+</style>
+ 
