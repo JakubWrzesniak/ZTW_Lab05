@@ -1,41 +1,10 @@
 <template>
-  <div id="app" class="small-container">
-    <h1>Ksiązki</h1>
-    <books-table :booksSource="books"/>
- </div>
+  <nav>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </nav>
+  <router-view/>
 </template>
-
-<script>
-import BooksTable from './components/BooksTable.vue'
-
-export default {
-  name: 'App',
-  components: {
-    BooksTable,
-  },
-  data(){
-    return{
-      books: null
-    }
-  },
-  methods: {
-    async getBooks(){
-      try{
-        const responce = await fetch('http://localhost:8080/get/books')
-        const data = await responce.json()
-        this.books = data
-        
-      }
-      catch (error) {
-        console.error(error)
-      }
-    }
-  },
-  mounted() {
-    this.getBooks()
-  }
-}
-</script>
 
 <style>
 #app {
@@ -44,6 +13,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+nav {
+  padding: 30px;
+}
+
+nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
