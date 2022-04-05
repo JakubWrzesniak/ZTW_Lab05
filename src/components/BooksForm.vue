@@ -1,30 +1,39 @@
 <template>
     <div id="books-form">
-        <form @submit.prevent="handleSubmit">
+        <b-form @submit.prevent="handleSubmit">
         <label>Tytuł</label>
-        <input v-model="book.title" type="text" />
+        <b-form-input v-model="book.title" type="text" />
         <label>Autor</label>
-        <input v-model="book.authorId" type="number" />
+        <b-form-select v-model="book.authorId">
+            <option :value="null" disabled>-- Please select an option --</option>
+            <option v-for="author in authorsSource" :key="author.id" :value="author.id">
+                {{author.id}} - {{ author.name }} {{author.surname}}
+            </option>
+        </b-form-select>
         <label>Liczba stron</label>
-        <input v-model="book.pages" type="number" />
+        <b-form-input v-model="book.pages" type="number" />
         <button>Dodaj książkę</button>
-        </form>
+        </b-form>
     </div>
 </template>
 
 <script>
     export default {
         name: 'books-form',
+        props: {
+            authorsSource: Array,
+        },
         data() {
             return {
                 submitting: false,
                 error: false,
                 success: false, 
                 book: {
-                title: '',
-                authorId: null,
-                pages: 0,
+                    title: '',
+                    authorId: null,
+                    pages: 0,
                 },
+                authors: []
             }
         },
         methods: {

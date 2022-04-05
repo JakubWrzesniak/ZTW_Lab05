@@ -1,10 +1,10 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <books-table :booksSource="books"  msg="Welcome to Your Vue.js App"/>
+    <books-table :booksSource="books" />
     <div id="app" class="small-container">
       <h1>Dodaj książkę</h1>
-      <books-form @add:book="getBooks"/>
+      <books-form @add:book="getBooks" :authorsSource="authors"/>
  </div>
 
   </div>
@@ -24,6 +24,7 @@ export default {
   data(){
     return {
       books: [],
+      authors: [],
     }
   },
   methods: {
@@ -36,13 +37,19 @@ export default {
         console.error(error)
       }
     },
-
+    getAuthors(){
+        fetch("http://localhost:8080/get/authors")
+        .then(res => res.json())
+        .then(res => this.authors = res)
+        .catch(error => console.log(error))
+    },
     addBook(book){
       this.books = [...this.books, book]
     }
   },
   mounted(){
     this.getBooks()
+    this.getAuthors()
   },
   handleSubmit() {
     this.$emit('add:book', this.books)
