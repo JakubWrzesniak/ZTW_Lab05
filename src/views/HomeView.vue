@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
     <books-table :booksSource="books" />
     <div id="app" class="small-container">
       <h1>Dodaj książkę</h1>
