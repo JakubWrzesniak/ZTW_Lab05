@@ -2,11 +2,24 @@
     <div id="books-form">
         <form @submit.prevent="handleSubmit">
         <label>Tytuł</label>
-        <input v-model="book.title" type="text" />
+        <input v-model="book.title" type="text" :class="{ 'has-error': submitting && invalidName }" 
+        @focus="clearStatus"
+        @keypress="clearStatus" 
+        />
         <label>Autor</label>
         <input v-model="book.authorId" type="number" />
         <label>Liczba stron</label>
-        <input v-model="book.pages" type="number" />
+        <input v-model="book.pages" type="number"
+        :class="{ 'has-error-page': submitting && invalidPageNumber }" 
+        @focus="clearStatus"
+        @keypress="clearStatus" 
+        />
+        <p v-if="error && submitting" class="error-message">
+        Proszę wypełnić wskazane pola formularza
+        </p>
+        <p v-if="success" class="success-message">
+        Dane poprawnie zapisano
+        </p>
         <button>Dodaj książkę</button>
         </form>
     </div>
@@ -70,6 +83,22 @@
                 return this.book.pages < 0
             }
          }
-
     }
 </script>
+
+<style scoped>
+ form {
+ margin-bottom: 2rem;
+ }
+
+ [class*='-message'] {
+ font-weight: 500;
+ }
+ .error-message {
+ color: #d33c40;
+ }
+ .success-message {
+ color: #32a95d;
+ }
+</style>
+ 
