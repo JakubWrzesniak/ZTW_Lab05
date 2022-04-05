@@ -11,7 +11,11 @@
             <tr v-for="book in booksSource" :key = "book.id">
                 <td>{{ book.id }}</td>
                 <td>{{ book.title }}</td>
-                <td><router-link to="/authors">{{ book.author.name }} {{ book.author.surname}}</router-link></td>
+                <td>
+                    <span v-if="book.author != null">
+                        <router-link to="/authors">{{ book.author.name }} {{ book.author.surname}}</router-link>
+                    </span>
+                </td>
                 <td>{{ book.pages}}</td>
             </tr>
         </tbody>
