@@ -1,15 +1,38 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="small-container">
+    <h1>Ksiązki</h1>
+    <books-table :booksSource="books"/>
+ </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import BooksTable from './components/BooksTable.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    BooksTable,
+  },
+  data(){
+    return{
+      books: null
+    }
+  },
+  methods: {
+    async getBooks(){
+      try{
+        const responce = await fetch('http://localhost:8080/get/books')
+        const data = await responce.json()
+        this.books = data
+        
+      }
+      catch (error) {
+        console.error(error)
+      }
+    }
+  },
+  mounted() {
+    this.getBooks()
   }
 }
 </script>
