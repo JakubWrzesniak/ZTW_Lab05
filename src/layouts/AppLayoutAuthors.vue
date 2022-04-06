@@ -12,10 +12,11 @@ export default {
 </script>
 
 <style scoped>
-.header {
-  height: 5rem;
-}
-th {
-  text-align: left !important;
-}
+  .header {
+    height: 5rem;
+  }
+  th {
+    text-align: left !important;
+  }
+  
 </style>

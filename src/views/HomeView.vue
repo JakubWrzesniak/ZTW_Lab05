@@ -1,11 +1,17 @@
 <template>
   <div class="home">
-    <books-table :booksSource="books" />
     <div id="app" class="small-container">
-      <h1>Dodaj książkę</h1>
-      <books-form @add:book="getBooks" :authorsSource="authors"/>
- </div>
-
+          <div>
+            <b-button v-b-toggle.collapse-1 variant="info" class="m-5">Dodaj ksiązkę</b-button>
+            <b-collapse id="collapse-1" class="mt-2 mb-5">
+                <b-card>
+                    <h1>Dodaj książkę</h1>
+                    <books-form @add:book="getBooks" :authorsSource="authors"/>
+                </b-card>
+            </b-collapse>
+          </div>
+    </div>
+    <books-table :booksSource="books" />
   </div>
 </template>
 

@@ -1,10 +1,17 @@
 <template>
   <div class="auhtors" id="container">
+      <div>
+        <b-button v-b-toggle.collapse-1 variant="info" class="m-3">Dodaj autora</b-button>
+        <b-collapse id="collapse-1" class="mt-2">
+            <div id="app" class="small-container">
+                <b-card>
+                    <h1>Dodaj autora</h1>
+                    <authors-form @add:author="getAuthors"/>
+                </b-card>
+             </div>
+        </b-collapse>
+        </div>
     <authors-list :authorsSource="authors"/>
-    <div id="app" class="small-container">
-      <h1>Dodaj autora</h1>
-      <authors-form @add:author="getAuthors"/>
- </div>
   </div>
 </template>
 

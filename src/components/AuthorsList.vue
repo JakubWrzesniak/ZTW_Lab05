@@ -5,6 +5,7 @@
                 <b-th>Id</b-th>
                 <b-th>Imię</b-th>
                 <b-th>Nazwisko</b-th>
+                <b-th>Akcja</b-th>
             </b-thead>
             <b-tbody>
             <tr v-for="author in authorsSource" :key = "author.id">
