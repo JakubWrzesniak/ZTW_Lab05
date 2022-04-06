@@ -23,8 +23,6 @@ export default {
         .then(res => res.json())
         .then(res => this.author = res)
         .catch(error => console.log(error))
-        console.log("Getting author")
-        console.log(this.author)
     },
     updateAuthor(author){
       this.author = author;

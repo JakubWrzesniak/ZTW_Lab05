@@ -6,7 +6,7 @@
                     <p>Ilośc stron: {{book.pages}}</p>
                 </b-card-body>
                 <b-button @click="editMode()" variant='outline-warning'>Edit</b-button>
-                <b-button @click="deleteBook()" variant='outline-danger'>Delete</b-button>
+                <b-button @click="$router.push({name: 'deletebook', params: {id: book.id },})" variant='outline-danger'>Delete</b-button>
             </b-card>
              <b-card v-if="edit && bookSource != null" header="Edit">
                 <b-form @submit.prevent="handleSubmit">
@@ -46,7 +46,7 @@
         </b-col>
         <b-col cols="6">
             <b-card v-if="bookSource != null && bookSource.author != null " header="Author" :title="bookSource.author.id + ' - ' + bookSource.author.name + ' ' + bookSource.author.surname">
-                <b-button  variant='outline-info'>Details</b-button>
+                <b-button  @click="$router.push({name: 'author-details', params: {id: book.author },})" variant='outline-info'>Szczegóły</b-button>
             </b-card>
         </b-col>
     </b-row>
@@ -143,28 +143,6 @@ export default{
             this.edit = false;
             this.message = ''
         },
-        deleteBook(){
-            fetch(
-                "http://localhost:8080/delete/book/" + this.bookSource.id,
-                {
-                    method: 'DELETE',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    },
-                }
-            ).then(res => {
-                if(res.status == 200){
-                    this.success = true
-                    this.error = false
-                    this.$router.push({name: 'books'})
-                } else {
-                    this.success = false
-                    this.error = true
-                }
-                this.message = 'Nie mozna usunac autora'
-            }).catch(error => console.log(error))
-        }
     },
     computed: {
             invalidName() {

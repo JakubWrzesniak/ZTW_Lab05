@@ -64,7 +64,7 @@
                 <b-tbody>
                     <b-tr v-for="book in books" :key = "book.id">
                         <b-td>{{ book.id }}</b-td>
-                        <b-td>{{ book.title }}</b-td>
+                        <b-td><router-link :to="'/book/' + book.id">{{ book.title }}</router-link></b-td>
                         <b-td>{{ book.pages}}</b-td>
                     </b-tr>
                 </b-tbody>
@@ -101,7 +101,9 @@ export default{
                 .then(res => res.json())
                 .then(res => this.books = res)
                 .catch(error => console.log(error))
+                console.log(this.books);
             }
+
         },
         getEditData(){
             if(this.authorSource != null){
