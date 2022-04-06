@@ -31,6 +31,11 @@ const routes = [
     path: '/author/:id',
     name: 'author-details',
     component: () => import('../views/AuthorView')
+  },
+  {
+    path: '/book/:id',
+    name: 'book-details',
+    component: () => import('../views/BookView')
   }
   // {
   //   path: '/bookadd',
