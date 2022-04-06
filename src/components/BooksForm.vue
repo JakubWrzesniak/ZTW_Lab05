@@ -2,12 +2,14 @@
     <div id="books-form">
         <b-form @submit.prevent="handleSubmit">
         <label>Tytuł</label>
-        <b-form-input v-model="book.title" type="text" :class="{ 'has-error': submitting && invalidName }" 
+        <b-form-input v-model="book.title" type="text" :class="{ 'has-error': submitting && invalidName }"
         @focus="clearStatus"
         @keypress="clearStatus" 
         />
         <label>Autor</label>
-        <b-form-select v-model="book.authorId">
+        <b-form-select v-model="book.authorId" :class="{ 'has-error': submitting && invalidAuthor }" 
+        @focus="clearStatus"
+        @keypress="clearStatus">
             <option :value="null" disabled>-- Please select an option --</option>
             <option v-for="author in authorsSource" :key="author.id" :value="author.id">
                 {{author.id}} - {{ author.name }} {{author.surname}}
@@ -15,17 +17,24 @@
         </b-form-select>
         <label>Liczba stron</label>
         <b-form-input v-model="book.pages" type="number"
-        :class="{ 'has-error-page': submitting && invalidPageNumber }" 
+        :class="{ 'has-error': submitting && (invalidPageNumber || invalidPage) }" 
         @focus="clearStatus"
         @keypress="clearStatus" 
         />
-        <p v-if="error && submitting" class="error-message">
+        <p v-if="error && submitting && invalidPageNumber" class="error-message">
+            Ujemna liczba stron
+            Proszę wypełnić wskazane pola formularza
+        </p>
+        <p v-else-if="submitting && invalidPageNumber" class="error-message">
+            Ujemna liczba stron            
+        </p>
+        <p v-else-if="error && submitting" class="error-message">
             Proszę wypełnić wskazane pola formularza
         </p>
         <p v-if="success" class="success-message">
             Dane poprawnie zapisano
         </p>
-            <button>Dodaj książkę</button>
+            <b-button variant="dark" class="custom-btn">Dodaj książkę</b-button>
         </b-form>
     </div>
 </template>
@@ -53,7 +62,10 @@
             handleSubmit() {
                 this.submitting = true
                 this.clearStatus() 
-                if (this.invalidName || this.invalidPageNumber) {
+                if (this.invalidPageNumber) {
+                    return
+                }
+                if (this.invalidName || this.invalidAuthor || this.invalidPage) {
                 this.error = true
                 return
                 } 
@@ -87,9 +99,15 @@
          computed: {
             invalidName() {
                 return this.book.title === ''
-            }, 
+            },
+            invalidAuthor() {
+                return this.book.authorId === null
+            },  
             invalidPageNumber() {
                 return this.book.pages < 0
+            },
+            invalidPage() {
+                return this.book.pages === ''
             }
          }
     }
@@ -108,6 +126,10 @@
  }
  .success-message {
  color: #32a95d;
+ }
+
+ .custom-btn {
+     background-color:#8f5dcf;
  }
 </style>
  

@@ -14,6 +14,8 @@ export default {
 <style scoped>
 .header {
   height: 5rem;
-  background-color: green;
+}
+th {
+  text-align: left !important;
 }
 </style>

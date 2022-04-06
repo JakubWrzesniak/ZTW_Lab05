@@ -1,23 +1,23 @@
 <template>
     <div id=autors-list>
-        <table>
-            <thead>
-                <th>Id</th>
-                <th>Imię</th>
-                <th>Nazwisko</th>
-            </thead>
-            <tbody>
+        <b-table-simple stripped hover :items="authors">
+            <b-thead>
+                <b-th>Id</b-th>
+                <b-th>Imię</b-th>
+                <b-th>Nazwisko</b-th>
+            </b-thead>
+            <b-tbody>
             <tr v-for="author in authorsSource" :key = "author.id">
-                <td>{{ author.id }}</td>
-                <td>{{ author.name }}</td>
-                <td>{{ author.surname }} </td>
+                <b-td>{{ author.id }}</b-td>
+                <b-td>{{ author.name }}</b-td>
+                <b-td>{{ author.surname }} </b-td>
                 <td>
-                    <b-button variant="link" @click="$router.push({name: 'author-details', params: {id: author.id },})">Szegóły</b-button> | 
+                    <b-button variant="link" @click="$router.push({name: 'author-details', params: {id: author.id },})">Szczegóły</b-button> | 
                     <b-button variant="link" @click="$router.push({name: 'deleteauthor', params: {id: author.id },})">Usuń autora</b-button>
                 </td>
             </tr>
-        </tbody>
-        </table>
+        </b-tbody>
+        </b-table-simple>
     </div>
 </template>
 
@@ -30,3 +30,12 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+th {
+    text-align: left;
+}
+#authors-list {
+    justify-content: center;
+}
+</style>

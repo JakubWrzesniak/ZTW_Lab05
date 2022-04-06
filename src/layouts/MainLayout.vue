@@ -1,5 +1,6 @@
 <template>
   <component :is="layout">
+    <img alt="Vue logo" src="@/assets/logo-booksy.png" height="120" width="530">
     <AppLayoutLinks />
     <slot />
   </component>
@@ -30,6 +31,7 @@ export default {
 }
 </script>
 <style scoped>
-
-
+th {
+  text-align: left !important;
+}
 </style>

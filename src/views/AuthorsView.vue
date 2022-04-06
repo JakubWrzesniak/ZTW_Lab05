@@ -1,5 +1,5 @@
 <template>
-  <div class="auhtors">
+  <div class="auhtors" id="container">
     <authors-list :authorsSource="authors"/>
     <div id="app" class="small-container">
       <h1>Dodaj autora</h1>
@@ -44,3 +44,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+#container {
+    justify-content: center;
+}
+</style>

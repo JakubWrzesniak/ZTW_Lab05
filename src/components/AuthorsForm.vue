@@ -17,7 +17,7 @@
         <p v-if="success" class="success-message">
         Dane poprawnie zapisano
         </p>
-        <button>Dodaj autora</button>
+        <b-button variant="dark" class="custom-btn">Dodaj autora</b-button>
         </form>
     </div>
 </template>
@@ -94,5 +94,8 @@
  }
  .success-message {
  color: #32a95d;
+ }
+  .custom-btn {
+     background-color:#8f5dcf;
  }
 </style>

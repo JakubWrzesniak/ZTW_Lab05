@@ -36,3 +36,13 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+th {
+  text-align: left;
+}
+
+#books-table {
+    justify-content: center;
+}
+</style>
