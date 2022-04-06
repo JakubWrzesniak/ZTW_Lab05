@@ -19,7 +19,7 @@
                     </b-td>
                     <b-td>{{ book.pages}}</b-td>
                     <b-td>
-                        <b-button variant="link" @click="$router.push({name: 'book-details', params: {id: book.id },})">Szegóły</b-button> | 
+                        <b-button variant="link" @click="$router.push({name: 'book-details', params: {id: book.id },})">Szczegóły</b-button> | 
                         <b-button variant="link" @click="$router.push({name: 'deletebook', params: {id: book.id },})">Usuń książkę</b-button>
                     </b-td>
                 </b-tr>
@@ -45,5 +45,9 @@ th {
 
 #books-table {
     justify-content: center;
+}
+
+.btn-link:hover {
+    color:white;
 }
 </style>

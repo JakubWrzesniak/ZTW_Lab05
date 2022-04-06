@@ -2,8 +2,8 @@
     <b-row>
         <b-col  cols="4">
             <b-card v-if="!edit && authorSource != null" :header="authorSource.id" :title="authorSource.name + ' ' +authorSource.surname" :footer="message">
-                <b-button @click="editMode()" variant='outline-warning'>Edit</b-button>
-                <b-button @click="$router.push({name: 'deleteauthor', params: {id: author.id },})" variant='outline-danger'>Delete</b-button>
+                <b-button class="m-3" @click="editMode()" variant='outline-warning'>Edit</b-button>
+                <b-button class="m-3" @click="$router.push({name: 'deleteauthor', params: {id: author.id },})" variant='outline-danger'>Delete</b-button>
             </b-card>
              <b-card v-if="edit && authorSource != null" header="Edit">
                 <b-form @submit="onSubmit" @reset="onReset">
@@ -158,5 +158,7 @@ export default{
 }
 </script>
 <style scoped>
-
+th {
+    text-align: left;
+}
 </style>

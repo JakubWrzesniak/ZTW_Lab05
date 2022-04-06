@@ -5,8 +5,8 @@
                 <b-card-body>
                     <p>Ilośc stron: {{book.pages}}</p>
                 </b-card-body>
-                <b-button @click="editMode()" variant='outline-warning'>Edit</b-button>
-                <b-button @click="$router.push({name: 'deletebook', params: {id: book.id },})" variant='outline-danger'>Delete</b-button>
+                <b-button class="m-3" @click="editMode()" variant='outline-warning'>Edit</b-button>
+                <b-button class="m-3" @click="$router.push({name: 'deletebook', params: {id: book.id },})" variant='outline-danger'>Delete</b-button>
             </b-card>
              <b-card v-if="edit && bookSource != null" header="Edit">
                 <b-form @submit.prevent="handleSubmit">

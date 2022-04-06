@@ -39,4 +39,7 @@ th {
 #authors-list {
     justify-content: center;
 }
+.btn-link:hover {
+    color:white;
+}
 </style>
