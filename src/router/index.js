@@ -36,7 +36,13 @@ const routes = [
     path: '/delete/author',
     name: 'deleteauthor',
     component: () => import(/* webpackChunkName: "about" */ '../components/AuthorsDelete.vue'),
-  }
+  },
+    {
+    path: '/author/:id',
+    name: 'author-details',
+    component: () => import('../views/AuthorView')
+    }
+
   // {
   //   path: '/bookadd',
   //   name: 'bookadd',
