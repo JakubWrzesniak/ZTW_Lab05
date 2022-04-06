@@ -10,11 +10,16 @@
         To działanie jest nieodwracalne.
       </p>
     </b-row>
+    <b-row class="justify-content-md-center">
+      <b-col cols="8">
+         <b-alert :show="this.error" variant="danger"> Nie mozna usunąć autora! Autor posiada ksiązki </b-alert>
+      </b-col>
+    </b-row>
     <b-row class="mt-4">
       <b-col>
-        <b-button variant="danger" @click="deleteAuthor"
-          >Usuń autora</b-button
-        >
+        <b-button variant="danger" @click="deleteAuthor">
+          Usuń autora
+        </b-button>
       </b-col>
       <b-col>
         <b-button variant="warning" @click="triggerClose">Zamknij</b-button>
@@ -29,20 +34,30 @@
     props: {
         id: Number,
     },
+    data(){
+      return {
+        error: false,
+      }
+    },
     methods: {
         triggerClose() {
-        this.$emit("closeDeleteModal")
-        this.$router.push({name: 'home'});
-        },
-        async deleteAuthor() {
-        fetch('http://localhost:8080/delete/author/' + this.$route.params.id, {
-        method: 'DELETE',
-        headers: {
-                'Content-Type': 'text/plain;charset=UTF-8'
-            },
-        })
-        .then(res => console.log(res))
-        .then(res => this.$router.push({name: 'home'},res))  
+          this.$emit("closeDeleteModal")
+          this.$router.push({name: 'authors'});
+          },
+          async deleteAuthor() {
+          fetch('http://localhost:8080/delete/author/' + this.$route.params.id, {
+          method: 'DELETE',
+          headers: {
+                  'Content-Type': 'text/plain;charset=UTF-8'
+              },
+          })
+          .then(res => {
+            if(res.status == 200) {
+              this.$router.push({name: 'authors'},res)
+            } else{
+              this.error = true
+            }
+            } )  
         },
     },
 };

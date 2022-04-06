@@ -18,7 +18,7 @@
                     </td>
                     <td>{{ book.pages}}</td>
                     <td>
-                        <b-button variant="link" @click="$router.push({name: 'book-details', params: {id: book.id },})">Szegóły</b-button>| 
+                        <b-button variant="link" @click="$router.push({name: 'book-details', params: {id: book.id },})">Szegóły</b-button> | 
                         <b-button variant="link" @click="$router.push({name: 'deletebook', params: {id: book.id },})">Usuń książkę</b-button>
                     </td>
                 </tr>

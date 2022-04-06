@@ -3,7 +3,7 @@
         <b-col  cols="4">
             <b-card v-if="!edit && authorSource != null" :header="authorSource.id" :title="authorSource.name + ' ' +authorSource.surname" :footer="message">
                 <b-button @click="editMode()" variant='outline-warning'>Edit</b-button>
-                <b-button @click="deleteAuthor()" variant='outline-danger'>Delete</b-button>
+                <b-button @click="$router.push({name: 'deleteauthor', params: {id: author.id },})" variant='outline-danger'>Delete</b-button>
             </b-card>
              <b-card v-if="edit && authorSource != null" header="Edit">
                 <b-form @submit="onSubmit" @reset="onReset">
@@ -146,28 +146,6 @@ export default{
             this.edit = false;
             this.message = ''
         },
-        deleteAuthor(){
-            fetch(
-                "http://localhost:8080/delete/author/" + this.authorSource.id,
-                {
-                    method: 'DELETE',
-                    headers: {
-                        'Accept': 'application/json, text/plain, */*',
-                        'Content-Type': 'application/json'
-                    },
-                }
-            ).then(res => {
-                if(res.status == 200){
-                    this.success = true
-                    this.error = false
-                    this.$router.push({name: 'authors'})
-                } else {
-                    this.success = false
-                    this.error = true
-                }
-                this.message = 'Nie mozna usunac autora'
-            }).catch(error => console.log(error))
-        }
     },
     mounted(){
         this.getBooks()

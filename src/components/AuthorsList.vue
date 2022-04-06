@@ -11,7 +11,10 @@
                 <td>{{ author.id }}</td>
                 <td>{{ author.name }}</td>
                 <td>{{ author.surname }} </td>
-                <td><b-button variant="link" @click="$router.push({name: 'deleteauthor', params: {id: author.id },})">Usuń autora</b-button></td>
+                <td>
+                    <b-button variant="link" @click="$router.push({name: 'author-details', params: {id: author.id },})">Szegóły</b-button> | 
+                    <b-button variant="link" @click="$router.push({name: 'deleteauthor', params: {id: author.id },})">Usuń autora</b-button>
+                </td>
             </tr>
         </tbody>
         </table>
