@@ -34,7 +34,7 @@
         <p v-if="success" class="success-message">
             Dane poprawnie zapisano
         </p>
-            <b-button variant="dark" class="custom-btn">Dodaj książkę</b-button>
+            <b-button type="submit" class="custom-btn">Dodaj książkę</b-button>
         </b-form>
     </div>
 </template>
