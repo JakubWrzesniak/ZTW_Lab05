@@ -28,6 +28,16 @@ const routes = [
     }
   },
   {
+    path: '/delete/book',
+    name: 'deletebook',
+    component: () => import(/* webpackChunkName: "about" */ '../components/BooksDelete.vue'),
+  },
+  {
+    path: '/delete/author',
+    name: 'deleteauthor',
+    component: () => import(/* webpackChunkName: "about" */ '../components/AuthorsDelete.vue'),
+  },
+    {
     path: '/author/:id',
     name: 'author-details',
     component: () => import('../views/AuthorView')
